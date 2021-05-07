@@ -7,10 +7,24 @@ import (
 	"cowin-service/model/generated/client/cowin"
 	"fmt"
 	"github.com/thoas/go-funk"
+	"sync"
+	"time"
 )
 
-func ScheduleAppointment(ctx context.Context, pinCode []string, date string, vaccine string, beneficiary string) {
-	availableSessions := getAvailableSession(ctx, pinCode, date, vaccine)
+func ScheduleAppointment(ctx context.Context, pinCodes []string, date string, vaccine string, beneficiary string) {
+	fmt.Println("Started Scheduling Appointment")
+	var (
+		availableSessions *[]cowin.SessionCalendarEntrySchemaSessions
+		start             time.Time
+	)
+
+	for {
+		start = time.Now()
+		availableSessions = getAvailableSession(ctx, pinCodes, date, vaccine)
+		if availableSessions != nil && len(*availableSessions) > 0 {
+			break
+		}
+	}
 
 	if availableSessions != nil && len(*availableSessions) > 0 {
 	loop:
@@ -24,7 +38,8 @@ func ScheduleAppointment(ctx context.Context, pinCode []string, date string, vac
 					Dose:          &dose,
 				}
 				response := cowinClient.ScheduleAppointment(ctx, requestBody)
-				fmt.Println(fmt.Sprintf("APPOINTMENT BOOKED at SUCCESSFULLY %v", response.AppointmentId))
+				end := time.Now()
+				fmt.Println(fmt.Sprintf("APPOINTMENT BOOKED at SUCCESSFULLY %v in time %v", response.AppointmentId, end.Sub(start)))
 				break loop
 			}
 		}
@@ -50,24 +65,35 @@ loop2:
 	return true
 }
 
-func getAvailableSession(ctx context.Context, pinCode []string, date string, vaccine string) *[]cowin.SessionCalendarEntrySchemaSessions {
-	var centerEntries *model.ArrayOfSessionCalendarEntrySchema
+func getAvailableSession(ctx context.Context, pinCodes []string, date string, vaccine string) *[]cowin.SessionCalendarEntrySchemaSessions {
+	var allPinHospitalEntries []model.ArrayOfSessionCalendarEntrySchema
 	var availableSessions []cowin.SessionCalendarEntrySchemaSessions
-	for _, p := range pinCode {
-		centerEntries = cowinClient.GetSessionCalenderByPin(ctx, p, date, vaccine)
-	}
-	if centerEntries != nil && len(centerEntries.Centers) > 0 {
+	var wg = &sync.WaitGroup{}
 
-		for _, center := range centerEntries.Centers {
-			if len(center.Sessions) > 0 {
-				filteredAvailableSessions := filterAvailableSession(&center.Sessions, vaccine, date)
-				if filteredAvailableSessions != nil && len(filteredAvailableSessions) > 0 {
-					availableSessions = append(availableSessions, filteredAvailableSessions...)
+	for _, p := range pinCodes {
+		wg.Add(1)
+		go func() {
+			pinCenters := cowinClient.GetSessionCalenderByPin(ctx, wg, p, date, vaccine)
+			if pinCenters != nil {
+				allPinHospitalEntries = append(allPinHospitalEntries, *pinCenters)
+			}
+		}()
+	}
+	wg.Wait()
+
+	if allPinHospitalEntries != nil && len(allPinHospitalEntries) > 0 {
+		for _, pinHospital := range allPinHospitalEntries {
+			for _, center := range pinHospital.Centers {
+				if len(center.Sessions) > 0 {
+					filteredAvailableSessions := filterAvailableSession(&center.Sessions, vaccine, date)
+					if filteredAvailableSessions != nil && len(filteredAvailableSessions) > 0 {
+						availableSessions = append(availableSessions, filteredAvailableSessions...)
+					}
 				}
 			}
 		}
 	} else {
-		fmt.Println(fmt.Sprintf("No center yet available at pinCode: %v...retrying...", pinCode))
+		fmt.Println(fmt.Sprintf("No center yet available at pinCode: %v...retrying...", pinCodes))
 	}
 
 	return &availableSessions
@@ -75,6 +101,6 @@ func getAvailableSession(ctx context.Context, pinCode []string, date string, vac
 
 func filterAvailableSession(sessions *[]cowin.SessionCalendarEntrySchemaSessions, vaccine string, date string) []cowin.SessionCalendarEntrySchemaSessions {
 	return funk.Filter(*sessions, func(session cowin.SessionCalendarEntrySchemaSessions) bool {
-		return session.AvailableCapacity > 0 && vaccine == session.Vaccine && session.MinAgeLimit == 45 && session.Date == date
+		return session.AvailableCapacity > 0 && vaccine == session.Vaccine && session.MinAgeLimit == 18 && session.Date == date
 	}).([]cowin.SessionCalendarEntrySchemaSessions)
 }

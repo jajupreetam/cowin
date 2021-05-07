@@ -16,7 +16,7 @@ func init() {
 
 func main() {
 	cowin.ScheduleAppointment(context.Background(), []string{"682557"}, "08-05-2021",
-		"COVISHIELD", "79299353493330")
+		"COVAXIN", "79299353493330")
 
 	//cowin.ReScheduleAppointment(context.Background(), "", []string{"411027"}, "07-05-2021", "COVAXIN")
 }

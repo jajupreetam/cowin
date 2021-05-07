@@ -7,6 +7,7 @@ import (
 	"cowin-service/utils"
 	"github.com/go-openapi/swag"
 	"net/url"
+	"sync"
 )
 
 func ScheduleAppointment(ctx context.Context, requestBody *cowin.InlineObject4) *model.ScheduleAppointmentResponse {
@@ -39,7 +40,9 @@ func ReScheduleAppointment(ctx context.Context, requestBody *cowin.InlineObject5
 	return true
 }
 
-func GetSessionCalenderByPin(ctx context.Context, pinCode string, date string, vaccine string) *model.ArrayOfSessionCalendarEntrySchema {
+func GetSessionCalenderByPin(ctx context.Context, wg *sync.WaitGroup, pinCode string, date string, vaccine string) *model.ArrayOfSessionCalendarEntrySchema {
+	defer wg.Done()
+
 	result := new(model.ArrayOfSessionCalendarEntrySchema)
 	params := url.Values{}
 
