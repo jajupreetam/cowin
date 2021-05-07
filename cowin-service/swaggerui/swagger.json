@@ -1,0 +1,5872 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Commerce Service API",
+    "description": "API for Digital Commerce Platform",
+    "contact": {}
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/cart": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Create empty Cart",
+        "summary": "CreateCart",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "CreateCart",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/cart/{cartId}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Get Cart Details",
+        "summary": "GetCart",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "GetCart",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cart Id"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Add single or multiple entry(s) to cart",
+        "summary": "AddToCart",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "AddToCart",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cart Id"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddToCartRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Update Cart",
+        "summary": "UpdateCart",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "UpdateCart",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cart Id"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateCartRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Clear Cart",
+        "summary": "ClearCart",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "ClearCartCart",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cart Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/cart/{cartId}/globalDiscount": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Add GlobalDiscount to cart",
+        "summary": "AddGlobalDiscount",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "AaddGlobalDiscount",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cart Id"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddGlobalDiscountRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/cart/{cartId}/globalDiscount/{globalDiscountType}": {
+      "delete": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "RemoveGlobalDiscount from cart",
+        "summary": "RemoveGlobalDiscount",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "RemoveGlobalDiscount",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cart Id"
+          },
+          {
+            "name": "globalDiscountType",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "AGENT_GLOBAL_DISCOUNT"
+            ]
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/cart/{cartId}/removeBundle/{bundleNo}": {
+      "delete": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Remove bundle from Cart",
+        "summary": "RemoveBundleFromCart",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "RemoveBundleFromCart",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cart Id"
+          },
+          {
+            "name": "bundleNo",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": "Bundle No. to remove"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/cart/{cartId}/switchPack/{mobilePack}": {
+      "put": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Switch Pack level",
+        "summary": "SwitchPack",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "SwitchPack",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cart Id"
+          },
+          {
+            "name": "mobilePack",
+            "in": "path",
+            "required": true,
+            "enum": [
+              "WE_MOBILE_PACK_M",
+              "WE_MOBILE_PACK_L",
+              "WE_MOBILE_PACK_XL"
+            ],
+            "type": "string"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/account": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Returns account data with an overview of services",
+        "summary": "GetAccount",
+        "tags": [
+          "Account"
+        ],
+        "operationId": "GetAccount",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/eligibility/creditCheck": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Electrician Eligibility Check",
+        "summary": "GetCreditCheckEligibility",
+        "tags": [
+          "Eligibility"
+        ],
+        "operationId": "GetCreditCheckEligibility",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreditCheckEligibilityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CreditCheckEligibility"
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/eligibility/electrician": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Electrician Eligibility Check",
+        "summary": "GetElectricianEligibility",
+        "tags": [
+          "Eligibility"
+        ],
+        "operationId": "GetElectricianEligibility",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "ElectricianEligibilityRequest",
+            "schema": {
+              "$ref": "#/definitions/ElectricianEligibilityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ElectricianEligibility"
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/eligibility/devicePlan": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Check Second DevicePlan Eligibility",
+        "summary": "GetDevicePlanEligiblity",
+        "tags": [
+          "Eligibility"
+        ],
+        "operationId": "GetDevicePlanEligiblity",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "GetDevicePlanEligiblityRequest",
+            "schema": {
+              "$ref": "#/definitions/GetDevicePlanEligibilityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GetDevicePlanEligibilityResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/linecheck/activation": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Perform LineCheck For NewActivation",
+        "summary": "PerformLineCheckForNewActivation",
+        "tags": [
+          "LineCheck"
+        ],
+        "operationId": "PerformLineCheckForNewActivation",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "LineCheckForNewActivationRequest",
+            "schema": {
+              "$ref": "#/definitions/LineCheckForNewActivationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LineCheckEligibility"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/linecheck/modification": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Perform LineCheck For Modification",
+        "summary": "PerformLineCheckForModification",
+        "tags": [
+          "LineCheck"
+        ],
+        "operationId": "PerformLineCheckForModification",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "LineCheckForModification",
+            "schema": {
+              "$ref": "#/definitions/LineCheckForModificationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LineCheckEligibility"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/offer": {
+      "post": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Create Offer",
+        "summary": "CreateOffer",
+        "tags": [
+          "Offer"
+        ],
+        "operationId": "CreateOffer",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "CreateOfferRequest",
+            "schema": {
+              "$ref": "#/definitions/CreateOfferRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CreateOfferResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/products/{ids}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Get Product(s) Details",
+        "summary": "GetProducts",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "GetProducts",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Comma separated ProductIds"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/products/search": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Search Products",
+        "summary": "SearchProducts",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "SearchProducts",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "typeCode",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "currentPage",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "Colon(:) separated key value pair"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ProductSearchResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/products/variants/{id}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Get Product(s) Details",
+        "summary": "GetProductVariants",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "GetProductVariants",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Product Code"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/products/upsell": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Get Upsell Products",
+        "summary": "GetUpsellProducts",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "GetUpsellProducts",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UpsellProductResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/subscription/priceOffers": {
+      "post": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Returns available offers for product",
+        "operationId": "getPriceOfferings",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "getPriceOfferingsRequest",
+            "description": "Get PriceOfferings Request Request model",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetPriceOfferingsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get PriceOfferings Response Model",
+            "schema": {
+              "$ref": "#/definitions/GetPriceOfferingsResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/subscription/packs/migrations": {
+      "get": {
+        "tags": [
+          "Subscription"
+        ],
+        "summary": "Returns available Mobile pack for migration",
+        "operationId": "getPackMigrationMatrix",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Pack Migration Matrix Response Model",
+            "schema": {
+              "$ref": "#/definitions/GetPackMigrationMatrixResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Product not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/subscription/{serial}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "GetService",
+        "summary": "Get single service details",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "SubscriptionServiceDetails",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "serial",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Product Serial"
+          },
+          {
+            "name": "accessInfo",
+            "in": "query",
+            "description": "Flag to control whether access info is required",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service",
+            "schema": {
+              "$ref": "#/definitions/Service"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/subscription/{serial}/migrations": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "GetMigrations",
+        "summary": "GetMigrations",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "SubscriptionMigrations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "serial",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Product Serial"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GetProductMigrationMatrixResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/subscription/{serial}/device": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "GetDevice",
+        "summary": "GetDevice",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "GetDevice",
+        "deprecated": true,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "serial",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Product Serial"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": true,
+            "enum": [
+              "en",
+              "de",
+              "fr",
+              "it"
+            ],
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/subscription/{serial}/devicePlans": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "GetDevicePlans",
+        "summary": "GetDevicePlans",
+        "tags": [
+          "Subscription"
+        ],
+        "operationId": "GetDevicePlans",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "serial",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Product Serial"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DevicePlanResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/company/{uid}": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Get Company By UID",
+        "summary": "GetCompanyByUID",
+        "tags": [
+          "UID"
+        ],
+        "operationId": "GetCompanyByUID",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Company UID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CompanyResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {}
+          },
+          "404": {
+            "description": "Company not found"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/resource/msisdns": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Get Msisdns",
+        "summary": "GetMsisdns",
+        "tags": [
+          "Resource"
+        ],
+        "operationId": "GetMsisdns",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "brand",
+            "in": "query",
+            "description": "brand",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "SUNRISE"
+            ]
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Category",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "POSTPAID",
+              "PREPAID"
+            ]
+          },
+          {
+            "name": "class",
+            "in": "query",
+            "description": "Class",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "STANDARD",
+              "GOLDEN"
+            ]
+          },
+          {
+            "name": "hlrId",
+            "in": "query",
+            "description": "HLR Type",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "HLR10"
+            ]
+          },
+          {
+            "name": "numOfMsisdns",
+            "in": "query",
+            "description": "number of msisdn, maximum is 10",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "pattern",
+            "in": "query",
+            "description": "last 4-digit",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "purpose",
+            "in": "query",
+            "description": "Purpose",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "MASTER",
+              "SLAVE"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GetMsisdnsResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    },
+    "/api/resource/clis": {
+      "get": {
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "description": "Get CLI",
+        "summary": "Get cli",
+        "tags": [
+          "Resource"
+        ],
+        "operationId": "GetCli",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "areaCode",
+            "in": "query",
+            "description": "areaCode",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "class",
+            "in": "query",
+            "description": "Class",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false,
+            "enum": [
+              "STANDARD",
+              "GOLDEN"
+            ]
+          },
+          {
+            "name": "numOfClis",
+            "in": "query",
+            "description": "number of cli, maximum is 10",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "pattern",
+            "in": "query",
+            "description": "last 4-digit",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/GetClisResponse"
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddGlobalDiscountRequest": {
+      "title": "AddGlobalDiscountRequest",
+      "type": "object",
+      "properties": {
+        "discountAmount": {
+          "type": "number",
+          "format": "float"
+        },
+        "globalDiscountType": {
+          "$ref": "#/definitions/GlobalDiscountType"
+        },
+        "lang": {
+          "$ref": "#/definitions/Language"
+        }
+      },
+      "required": [
+        "discountAmount",
+        "globalDiscountType"
+      ]
+    },
+    "GlobalDiscount": {
+      "title": "GlobalDiscount",
+      "type": "object",
+      "properties": {
+        "discountAmount": {
+          "type": "number",
+          "format": "float"
+        },
+        "globalDiscountType": {
+          "$ref": "#/definitions/GlobalDiscountType"
+        }
+      },
+      "required": [
+        "discountAmount",
+        "globalDiscountType"
+      ]
+    },
+    "GlobalDiscountType": {
+      "title": "GlobalDiscountType",
+      "type": "string",
+      "enum": [
+        "AGENT_GLOBAL_DISCOUNT"
+      ]
+    },
+    "UpsellProductResponse": {
+      "title": "UpsellProductResponse",
+      "type": "object",
+      "properties": {
+        "mobileRatePlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UpsellMobileRatePlan"
+          },
+          "x-omitempty": true
+        },
+        "homeRatePlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UpsellHomeRatePlan"
+          },
+          "x-omitempty": true
+        },
+        "status": {
+          "type": "string",
+          "example": "OK"
+        },
+        "siteId": {
+          "type": "string",
+          "example": "3976008610"
+        }
+      }
+    },
+    "UpsellMobileRatePlan": {
+      "title": "UpsellMobileRatePlan",
+      "type": "object",
+      "properties": {
+        "points": {
+          "type": "number",
+          "example": 5
+        },
+        "rank": {
+          "type": "number",
+          "example": 1
+        },
+        "ratePlan": {
+          "type": "string",
+          "example": "We Mobile L"
+        }
+      }
+    },
+    "UpsellHomeRatePlan": {
+      "title": "UpsellHomeRatePlan",
+      "type": "object",
+      "properties": {
+        "cli": {
+          "type": "string",
+          "example": "41434439175"
+        },
+        "serviceId": {
+          "type": "string",
+          "example": "U0000000081"
+        },
+        "bundles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UpsellHomeBundle"
+          }
+        }
+      }
+    },
+    "UpsellHomeBundle": {
+      "title": "UpsellHomeRatePlan",
+      "type": "object",
+      "properties": {
+        "ratePlans": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "We Home M",
+            "We Phone M",
+            "We TV L"
+          ]
+        },
+        "points": {
+          "type": "number",
+          "example": 5
+        },
+        "rank": {
+          "type": "number",
+          "example": 1
+        }
+      }
+    },
+    "BrandType": {
+      "type": "string",
+      "enum": [
+        "SUNRISE"
+      ]
+    },
+    "CategoryType": {
+      "type": "string",
+      "enum": [
+        "POSTPAID",
+        "PREPAID"
+      ]
+    },
+    "ClassType": {
+      "type": "string",
+      "enum": [
+        "STANDARD",
+        "GOLDEN"
+      ]
+    },
+    "HlrldType": {
+      "type": "string",
+      "enum": [
+        "HLR10"
+      ]
+    },
+    "PurposeType": {
+      "type": "string",
+      "enum": [
+        "MASTER",
+        "SLAVE"
+      ]
+    },
+    "GetClisResponse": {
+      "type": "object",
+      "properties": {
+        "standard": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-omitempty": true
+        },
+        "golden": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-omitempty": true
+        }
+      }
+    },
+    "GetMsisdnsResponse": {
+      "type": "object",
+      "properties": {
+        "standard": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-omitempty": true
+        },
+        "golden": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-omitempty": true
+        }
+      }
+    },
+    "GetClisRequest": {
+      "type": "object",
+      "required": [
+        "areaCode",
+        "numOfClis"
+      ],
+      "properties": {
+        "areaCode": {
+          "type": "string"
+        },
+        "class": {
+          "$ref": "#/definitions/ClassType"
+        },
+        "numOfClis": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pattern": {
+          "type": "string"
+        }
+      }
+    },
+    "GetMsisdnsRequest": {
+      "type": "object",
+      "required": [
+        "brand",
+        "category",
+        "hlrld",
+        "numOfMsisdns",
+        "purpose"
+      ],
+      "properties": {
+        "brand": {
+          "$ref": "#/definitions/BrandType"
+        },
+        "category": {
+          "$ref": "#/definitions/CategoryType"
+        },
+        "class": {
+          "$ref": "#/definitions/ClassType"
+        },
+        "hlrld": {
+          "$ref": "#/definitions/HlrldType"
+        },
+        "numOfMsisdns": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pattern": {
+          "type": "string"
+        },
+        "purpose": {
+          "$ref": "#/definitions/PurposeType"
+        }
+      }
+    },
+    "DevicePlanResponse": {
+      "title": "DevicePlanResponse",
+      "type": "object",
+      "required": [
+        "devicePlans",
+        "pendingOrders",
+        "serial"
+      ],
+      "properties": {
+        "devicePlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DevicePlanInfo"
+          }
+        },
+        "pendingOrders": {
+          "type": "boolean",
+          "description": "whether there are any pending orders on the site or subscription"
+        },
+        "serial": {
+          "type": "string",
+          "example": "0763737325"
+        }
+      }
+    },
+    "DevicePlanStatus": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE",
+        "PENDING"
+      ],
+      "example": "ACTIVE"
+    },
+    "DevicePlanInfo": {
+      "title": "DevicePlanInfo",
+      "type": "object",
+      "required": [
+        "devicePlanId",
+        "devicePlanStatus",
+        "endDate",
+        "paidInstalments",
+        "paidInstalmentsAmount",
+        "remainingInstalments",
+        "remainingInstalmentsAmount",
+        "startDate"
+      ],
+      "properties": {
+        "devicePlanDetails": {
+          "$ref": "#/definitions/DevicePlanType"
+        },
+        "devicePlanId": {
+          "type": "string",
+          "description": "device plan id",
+          "example": "DP0002045768"
+        },
+        "devicePlanStatus": {
+          "$ref": "#/definitions/DevicePlanStatus"
+        },
+        "earliestRenewalDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2019-05-08",
+          "description": "Earlieast renewal date of device plan",
+          "x-nullable": true
+        },
+        "earliestUpgradeDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2019-06-08",
+          "description": "Earlieast upgrade date of device plan",
+          "x-nullable": true
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2021-03-08",
+          "description": "end date of device plan"
+        },
+        "paidInstalments": {
+          "type": "integer",
+          "format": "int32",
+          "example": 11,
+          "description": "paid no of installments"
+        },
+        "paidInstalmentsAmount": {
+          "type": "number",
+          "example": 684.75,
+          "description": "paid amount for each installment"
+        },
+        "remainingInstalments": {
+          "type": "integer",
+          "format": "int32",
+          "example": 9,
+          "description": "ramining no of installments"
+        },
+        "remainingInstalmentsAmount": {
+          "type": "number",
+          "example": 560.25,
+          "description": "ramining no of installment amount"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2019-03-08",
+          "description": "start date of device plan"
+        },
+        "terminationDate": {
+          "type": "string",
+          "format": "date",
+          "example": "2020-03-08",
+          "description": "Termination date of device plan",
+          "x-nullable": true
+        },
+        "upgradeEligible": {
+          "type": "boolean",
+          "description": "Upgrage eligible or not"
+        }
+      }
+    },
+    "DevicePlanType": {
+      "title": "DevicePlanType",
+      "type": "object",
+      "required": [
+        "duration",
+        "finalInstallment",
+        "monthlyPayment",
+        "recurringInstallments",
+        "sapId",
+        "sapInstalmentId",
+        "totalPrice",
+        "upfrontPayment"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "example": "Apple iPad Pro 12.9"
+        },
+        "discount": {
+          "$ref": "#/definitions/DevicePlanDiscount"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32",
+          "example": 23,
+          "description": "contract duration"
+        },
+        "finalInstallment": {
+          "type": "number",
+          "example": 62.25,
+          "description": "amount for the final installment"
+        },
+        "monthlyPayment": {
+          "type": "number",
+          "example": 62.25,
+          "description": "amount for each installment"
+        },
+        "purchasePrice": {
+          "type": "number",
+          "example": 7.75,
+          "description": "purchase Price"
+        },
+        "recurringInstallments": {
+          "type": "integer",
+          "format": "int32",
+          "example": 24,
+          "description": "no of recurring installments"
+        },
+        "sapId": {
+          "type": "string",
+          "example": "000000000000019485",
+          "description": "sap id"
+        },
+        "sapInstalmentId": {
+          "type": "string",
+          "example": "ZC01/1H/1/24"
+        },
+        "serialNumber": {
+          "type": "string",
+          "example": "358718096970384",
+          "description": "serial Number"
+        },
+        "totalPrice": {
+          "type": "number",
+          "example": 1495,
+          "description": "Initial/Upfront payment amount"
+        },
+        "upfrontBuyback": {
+          "type": "number",
+          "example": 1,
+          "description": "upfront buyback"
+        },
+        "upfrontPayment": {
+          "type": "number",
+          "example": 1,
+          "description": "upfront Payment"
+        }
+      }
+    },
+    "DevicePlanDiscount": {
+      "title": "DevicePlanDiscount",
+      "type": "object",
+      "properties": {
+        "discountAmount": {
+          "type": "number",
+          "example": 1
+        },
+        "discountPercentage": {
+          "type": "number",
+          "example": 1
+        },
+        "discountedFinalInstallment": {
+          "type": "number",
+          "example": 1
+        },
+        "discountedMonthlyPayment": {
+          "type": "number",
+          "example": 1
+        },
+        "modifiedUpfrontPayment": {
+          "type": "number",
+          "example": 1
+        },
+        "sourceType": {
+          "$ref": "#/definitions/DiscountSourceType"
+        }
+      }
+    },
+    "DiscountSourceType": {
+      "title": "DiscountSourceType",
+      "type": "object",
+      "properties": {
+        "bindingPromoEndDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "binding promo end date",
+          "x-nullable": true
+        },
+        "bindingPromoName": {
+          "type": "string",
+          "description": "source type other than binding promo"
+        },
+        "other": {
+          "type": "string",
+          "description": "source type other than binding promo"
+        }
+      }
+    },
+    "GetDevicePlanEligibilityRequest": {
+      "title": "GetDevicePlanEligibilityRequest",
+      "type": "object",
+      "required": [
+        "serial"
+      ],
+      "properties": {
+        "serial": {
+          "type": "string",
+          "example": "0763737325",
+          "description": "serial of product"
+        }
+      }
+    },
+    "GetDevicePlanEligibilityResponse": {
+      "title": "GetDevicePlanEligibilityResponse",
+      "type": "object",
+      "required": [
+        "devicePlanCount",
+        "maxDevicePlanCount",
+        "newDevicePlanAllowed",
+        "serial"
+      ],
+      "properties": {
+        "serial": {
+          "type": "string",
+          "example": "0763737325"
+        },
+        "devicePlanCount": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "device plan count"
+        },
+        "maxDevicePlanCount": {
+          "type": "integer",
+          "format": "int32",
+          "example": 2,
+          "description": "max device plan count"
+        },
+        "newDevicePlanAllowed": {
+          "type": "boolean",
+          "description": "new device plan allowed or not"
+        }
+      }
+    },
+    "CompanyResponse": {
+      "type": "object",
+      "title": "CompanyResponse",
+      "properties": {
+        "businessLegalAddressee": {
+          "$ref": "#/definitions/BusinessLegalAddressee"
+        },
+        "companyInfo": {
+          "$ref": "#/definitions/CompanyInfo"
+        }
+      }
+    },
+    "BusinessLegalAddressee": {
+      "type": "object",
+      "title": "BusinessLegalAddressee",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/LegalAddress"
+        },
+        "pobox": {
+          "type": "string",
+          "example": "20"
+        },
+        "companyName": {
+          "type": "string",
+          "example": "GreenLemon Reinigungen Vybohov"
+        }
+      }
+    },
+    "CompanyInfo": {
+      "title": "CompanyInfo",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "UID of company",
+          "example": "CHE-243.475.128"
+        },
+        "companyUidReg": {
+          "type": "string",
+          "description": "Company UID registration",
+          "example": "GreenLemon Reinigungen Vybohov"
+        },
+        "legalName": {
+          "type": "string",
+          "description": "Company legal name",
+          "example": "GreenLemon Reinigungen Vybohov"
+        },
+        "legalEntity": {
+          "type": "string",
+          "example": 71,
+          "description": "Legal Entity no"
+        },
+        "legalEntityNameEN": {
+          "type": "string",
+          "example": "Limited liability company",
+          "description": "Legal Entity name in English"
+        },
+        "legalEntityNameDE": {
+          "type": "string",
+          "example": "Gesellschaft mit beschränkter Haftung (GmbH)",
+          "description": "Legal Entity name in Dutch"
+        },
+        "legalEntityNameFR": {
+          "type": "string",
+          "example": "Société à responsabilité limitée (SARL)",
+          "description": "Legal Entity name in French"
+        },
+        "legalEntityNameIT": {
+          "type": "string",
+          "example": "Société a garanzia limitata (SAGL)",
+          "description": "Legal Entity name in Italian"
+        },
+        "abbreviationEN": {
+          "type": "string",
+          "example": "Ltd"
+        },
+        "abbreviationDE": {
+          "type": "string",
+          "example": "GMBH"
+        },
+        "abbreviationFR": {
+          "type": "string",
+          "example": "SARL"
+        },
+        "abbreviationIT": {
+          "type": "string",
+          "example": "SAGL"
+        },
+        "isLegalEntityWhitelist": {
+          "type": "boolean",
+          "description": "Legal Entity white listed or not"
+        },
+        "foundationDate": {
+          "type": "string",
+          "format": "date",
+          "description": "formation date",
+          "example": "2000-12-12",
+          "x-nullable": true
+        },
+        "expirationDate": {
+          "type": "string",
+          "format": "date",
+          "description": "expiration date",
+          "example": "2020-12-12",
+          "x-nullable": true
+        },
+        "registrationStatus": {
+          "$ref": "#/definitions/CompanyRegistrationStatus"
+        }
+      }
+    },
+    "Device": {
+      "type": "object",
+      "title": "Device",
+      "properties": {
+        "accessoryPlanDetailsDataList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccessoryPlanDetails"
+          },
+          "x-omitempty": true
+        },
+        "deviceDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DevicePlan"
+          },
+          "x-omitempty": true
+        },
+        "deviceImei": {
+          "type": "string"
+        },
+        "deviceName": {
+          "type": "string"
+        },
+        "devicePlan": {
+          "$ref": "#/definitions/DevicePlan"
+        },
+        "deviceSoftware": {
+          "type": "string"
+        },
+        "deviceSpecUrl": {
+          "type": "string"
+        },
+        "deviceVendor": {
+          "type": "string"
+        },
+        "deviceVendorUrl": {
+          "type": "string"
+        },
+        "deviceWebUrl": {
+          "type": "string"
+        },
+        "newDPEligible": {
+          "type": "boolean"
+        },
+        "payOffChoices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DevicePlan"
+          },
+          "x-omitempty": true
+        },
+        "showReservationStatusButton": {
+          "type": "boolean",
+          "x-nullable": true
+        },
+        "serial": {
+          "type": "string"
+        }
+      }
+    },
+    "AccessoryPlanDetails": {
+      "type": "object",
+      "title": "AccessoryPlanDetails",
+      "properties": {
+        "hardwareName": {
+          "type": "string"
+        },
+        "sunAccessoryPlan": {
+          "$ref": "#/definitions/AccessoryPlan"
+        }
+      }
+    },
+    "DevicePlan": {
+      "type": "object",
+      "properties": {
+        "billedAmount": {
+          "$ref": "#/definitions/Price"
+        },
+        "billedMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "contractDuration": {
+          "type": "string"
+        },
+        "contractEndDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "contractStartDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "deviceInContract": {
+          "type": "string"
+        },
+        "devicePrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "dpContractId": {
+          "type": "string"
+        },
+        "finalInstallment": {
+          "$ref": "#/definitions/Price"
+        },
+        "imei": {
+          "type": "string"
+        },
+        "initialPayment": {
+          "$ref": "#/definitions/Price"
+        },
+        "monthlyInstallment": {
+          "$ref": "#/definitions/Price"
+        },
+        "newDPEndDate": {
+          "type": "string",
+          "format": "date",
+          "x-nullable": true
+        },
+        "newDPStartDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "outstandingAmount": {
+          "$ref": "#/definitions/Price"
+        },
+        "outstandingFinalMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outstandingMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outstandingRecurringMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "payOffOptionId": {
+          "type": "string"
+        },
+        "payedInstallments": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "payedInstallmentsAmount": {
+          "$ref": "#/definitions/Price"
+        },
+        "runningDevicePlan": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        },
+        "totalPrice": {
+          "$ref": "#/definitions/Price"
+        }
+      }
+    },
+    "AccessoryPlan": {
+      "type": "object",
+      "title": "AccessoryPlan",
+      "properties": {
+        "billedAmount": {
+          "$ref": "#/definitions/Price"
+        },
+        "billedMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "contractDuration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "contractEndDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "contractStartDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        },
+        "finalInstallment": {
+          "$ref": "#/definitions/Price"
+        },
+        "initialPayment": {
+          "$ref": "#/definitions/Price"
+        },
+        "monthlyInstallment": {
+          "$ref": "#/definitions/Price"
+        },
+        "outstandingAmount": {
+          "$ref": "#/definitions/Price"
+        },
+        "outstandingFinalMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outstandingMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "outstandingRecurringMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "payedInstallments": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "payedInstallmentsAmount": {
+          "$ref": "#/definitions/Price"
+        },
+        "totalPrice": {
+          "$ref": "#/definitions/Price"
+        }
+      }
+    },
+    "ElectricianEligibility": {
+      "title": "ElectricianEligibility",
+      "type": "object",
+      "properties": {
+        "suggestedProduct": {
+          "type": "string",
+          "example": "NONE"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          },
+          "x-omitempty": true
+        }
+      }
+    },
+    "CreditCheckEligibilityRequest": {
+      "title": "CreditCheckEligibilityRequest",
+      "type": "object",
+      "properties": {
+        "requestType": {
+          "$ref": "#/definitions/RequestType"
+        },
+        "serviceTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceType"
+          }
+        },
+        "serviceSubType": {
+          "$ref": "#/definitions/ServiceSubType"
+        },
+        "customerInfo": {
+          "$ref": "#/definitions/CreditCheckCustomerInfo"
+        }
+      },
+      "required": [
+        "requestType",
+        "serviceTypes"
+      ]
+    },
+    "CreditCheckEligibility": {
+      "title": "CreditCheckEligibility",
+      "type": "object",
+      "properties": {
+        "creditCheckId": {
+          "example": "CCE8830099",
+          "type": "string"
+        },
+        "eligibilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EligibilityGroup"
+          },
+          "x-omitempty": true
+        }
+      }
+    },
+    "EligibilityGroup": {
+      "title": "EligibilityGroup",
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/EligibilityStatus"
+        },
+        "requestType": {
+          "$ref": "#/definitions/RequestType"
+        },
+        "serviceType": {
+          "$ref": "#/definitions/ServiceType"
+        },
+        "serviceSubType": {
+          "$ref": "#/definitions/ServiceSubType"
+        },
+        "servicePlanEligibleProducts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServicePlanEligibleProduct"
+          },
+          "x-omitempty": true
+        },
+        "eligibilitySummaryInfo": {
+          "$ref": "#/definitions/EligibilitySummaryInfo"
+        }
+      },
+      "required": [
+        "status",
+        "requestType",
+        "serviceType",
+        "serviceSubType"
+      ]
+    },
+    "ServicePlanEligibleProduct": {
+      "title": "ServicePlanEligibleProduct",
+      "type": "object",
+      "required": [
+        "earliestStartDate",
+        "eligible",
+        "serial",
+        "specialitySegment",
+        "status"
+      ],
+      "properties": {
+        "earliestStartDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "eligible": {
+          "type": "boolean"
+        },
+        "serial": {
+          "type": "string",
+          "example": "0764229330"
+        },
+        "specialitySegment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecialitySegment"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/ServicePlanEligibleStatus"
+        }
+      }
+    },
+    "ServicePlanEligibleStatus": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "DATE_FUTURE",
+        "PREPAID_BALANCE",
+        "EXISTING_ORDER",
+        "PAID_INSTALLMENT"
+      ],
+      "example": "OK"
+    },
+    "SpecialitySegment": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "YOUTH",
+        "AIRPORT"
+      ],
+      "example": "NONE"
+    },
+    "EligibilitySummaryInfo": {
+      "title": "EligibilitySummaryInfo",
+      "type": "object",
+      "properties": {
+        "usedProduct": {
+          "example": 1,
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxProduct": {
+          "example": 5,
+          "type": "integer",
+          "format": "int32"
+        },
+        "remainingProduct": {
+          "example": 4,
+          "type": "integer",
+          "format": "int32"
+        },
+        "inEligibilityReason": {
+          "example": "Risky Customer",
+          "type": "string"
+        },
+        "deposit": {
+          "example": 50,
+          "type": "number",
+          "format": "double"
+        },
+        "maxAllowedCreditPerProduct": {
+          "example": 5,
+          "type": "number",
+          "format": "double"
+        },
+        "eligibilityRiskBand": {
+          "example": "R1",
+          "type": "string"
+        },
+        "prePaymentRequired": {
+          "example": false,
+          "type": "boolean"
+        },
+        "hardwarePrePayment": {
+          "example": "False",
+          "type": "string"
+        }
+      },
+      "required": [
+        "usedProduct",
+        "maxProduct",
+        "remainingProduct"
+      ]
+    },
+    "EligibilityStatus": {
+      "title": "EligibilityStatus",
+      "type": "string",
+      "enum": [
+        "OK",
+        "OK_BUT_RISKY",
+        "CC_STRENGTH",
+        "MAX_OPEN",
+        "MAX_DRAFT",
+        "NO_ELIGIBLE_PRODUCT",
+        "OVERRULE_PLATINUM",
+        "OVERRULE_GOLD",
+        "OVERRULE_SILVER",
+        "OVERRULE_BRONZE",
+        "RESTRICTED_BY_CC",
+        "PARTIALLY_RESTRICTED_BY_CC",
+        "RATING_RESTR_FIXNET",
+        "AGE_RESTR",
+        "DOC_RESTR",
+        "LEGAL_GUARDIANSHIP_RESTR",
+        "CUST_DEAD",
+        "NOT_FOUND",
+        "BANKRUPTCY",
+        "BLACKLISTED",
+        "UNABLE_TO_IDENTIFY",
+        "RESTR_BRONZE",
+        "RESTR_PAYBEH",
+        "RESTR_ADDR",
+        "RESTR_RATING",
+        "RESTR_GLIST",
+        "RESTR_DOC",
+        "RESTR_NOTFOUND",
+        "S24NO_NOT_FOUND",
+        "S24NO_PAYBEH",
+        "S24NO_ADDR",
+        "S24NO_RATING",
+        "S24NO_GLIST",
+        "S24NO_DOC",
+        "CUSTOMER_NOT_ELIGIBLE",
+        "MAX_NUMBER_SUBS_REACHED",
+        "AGE_RESTR_16_17",
+        "EXTERNAL_SCORE",
+        "DOC_LIGHT",
+        "TELCO_FRAUDPOOL",
+        "AGE_LIGHT",
+        "DEPOSIT"
+      ]
+    },
+    "CreditCheckCustomerInfo": {
+      "title": "CreditCheckCustomerInfo",
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "example": "FN",
+          "type": "string"
+        },
+        "lastName": {
+          "example": "LN",
+          "type": "string"
+        },
+        "segment": {
+          "$ref": "#/definitions/Segment"
+        },
+        "birthDate": {
+          "example": "1990-01-21",
+          "type": "string",
+          "format": "date"
+        },
+        "identityType": {
+          "$ref": "#/definitions/IdentityType"
+        },
+        "street": {
+          "example": "Binzmühlesstrasse",
+          "type": "string"
+        },
+        "houseNr": {
+          "example": "130",
+          "type": "string"
+        },
+        "city": {
+          "example": "Zürich",
+          "type": "string"
+        },
+        "zipCode": {
+          "example": "8050",
+          "type": "string"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "segment",
+        "birthDate",
+        "identityType",
+        "street",
+        "houseNr",
+        "city",
+        "zipCode"
+      ]
+    },
+    "ProductSearchResponse": {
+      "title": "ProductSearchResponse",
+      "type": "object",
+      "properties": {
+        "facets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Facet"
+          },
+          "x-omitempty": true
+        },
+        "pagination": {
+          "$ref": "#/definitions/Pagination"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          },
+          "x-omitempty": true
+        }
+      }
+    },
+    "CreateOfferRequest": {
+      "title": "CreateOfferRequest",
+      "type": "object",
+      "properties": {
+        "cartId": {
+          "type": "string"
+        },
+        "communicationChannel": {
+          "$ref": "#/definitions/PreferredCommChannel"
+        },
+        "address": {
+          "$ref": "#/definitions/LineCheckAddress"
+        },
+        "customer": {
+          "$ref": "#/definitions/OfferCustomer"
+        },
+        "isDiffBillingAddress": {
+          "type": "boolean",
+          "example": true
+        },
+        "technology": {
+          "$ref": "#/definitions/Technology"
+        }
+      },
+      "required": [
+        "cartId"
+      ]
+    },
+    "CreateOfferResponse": {
+      "title": "CreateOfferResponse",
+      "type": "object",
+      "properties": {
+        "offerId": {
+          "type": "string"
+        },
+        "externalOfferId": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          },
+          "x-omitempty": true
+        }
+      },
+      "required": [
+        "offerId"
+      ]
+    },
+    "Pagination": {
+      "title": "Pagination",
+      "type": "object",
+      "properties": {
+        "currentPage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalResults": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Facet": {
+      "title": "Facet",
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "string"
+        },
+        "multiSelect": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "topValues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FacetValue"
+          },
+          "x-omitempty": true
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FacetValue"
+          },
+          "x-omitempty": true
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      }
+    },
+    "FacetValue": {
+      "title": "FacetValue",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "query": {
+          "$ref": "#/definitions/SearchState"
+        },
+        "selected": {
+          "type": "boolean"
+        }
+      }
+    },
+    "SearchState": {
+      "title": "SearchState",
+      "type": "object",
+      "properties": {
+        "query": {
+          "$ref": "#/definitions/SearchQuery"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "SearchQuery": {
+      "title": "SearchQuery",
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "OfferCustomer": {
+      "title": "OfferCustomer",
+      "type": "object",
+      "required": [
+        "legalContact",
+        "legalAddressee",
+        "segment"
+      ],
+      "properties": {
+        "companyDetails": {
+          "$ref": "#/definitions/CompanyDetailsInput"
+        },
+        "legalContact": {
+          "$ref": "#/definitions/Contact"
+        },
+        "legalAddressee": {
+          "$ref": "#/definitions/Addressee"
+        },
+        "segment": {
+          "$ref": "#/definitions/Segment"
+        }
+      }
+    },
+    "CompanyDetailsInput": {
+      "title": "CompanyDetailsInput",
+      "type": "object",
+      "required": [
+        "companyUid"
+      ],
+      "properties": {
+        "companyUid": {
+          "type": "string",
+          "description": "Company UID number for Business Customers",
+          "example": "CHE-116.281.710"
+        },
+        "uidStatus": {
+          "$ref": "#/definitions/UIDStatus"
+        },
+        "legalEntity": {
+          "type": "string",
+          "example": "0101",
+          "description": "Legal Entity Number"
+        },
+        "legalEntityName": {
+          "type": "string",
+          "example": "Limited liability company",
+          "description": "Legal Entity based on Language"
+        },
+        "abbreviation": {
+          "type": "string",
+          "example": "Ltd",
+          "description": "Abbrevation based on Language"
+        },
+        "companyUidReg": {
+          "type": "string",
+          "description": "Company UID registration",
+          "example": "ADM SÃrl"
+        },
+        "foundationDate": {
+          "type": "string",
+          "format": "date",
+          "description": "formation date",
+          "example": "2000-12-12",
+          "x-nullable": true
+        },
+        "registrationStatus": {
+          "$ref": "#/definitions/CompanyRegistrationStatus"
+        },
+        "isLegalEntityWhitelist": {
+          "type": "boolean",
+          "description": "Legal Entity white listed or not"
+        }
+      }
+    },
+    "CompanyRegistrationStatus": {
+      "title": "CompanyRegistrationStatus",
+      "type": "string",
+      "enum": [
+        "ISSUED",
+        "DUPLICATE",
+        "LAPSED",
+        "MERGED",
+        "RETIRED",
+        "ANNULLED",
+        "CANCELLED"
+      ],
+      "example": "ISSUED"
+    },
+    "UIDStatus": {
+      "type": "string",
+      "enum": [
+        "UID_CHECKED",
+        "BC_EXCEPTION",
+        "BC_GOVERNANCE"
+      ],
+      "example": "UID_CHECKED"
+    },
+    "Addressee": {
+      "title": "Addressee",
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/LegalAddress"
+        },
+        "companyName": {
+          "example": "ABC Communications AG.",
+          "type": "string"
+        },
+        "firstName": {
+          "example": "John",
+          "type": "string"
+        },
+        "lastName": {
+          "example": "Doe",
+          "type": "string"
+        },
+        "salutation": {
+          "$ref": "#/definitions/Salutation"
+        },
+        "title": {
+          "$ref": "#/definitions/Title"
+        }
+      },
+      "required": [
+        "address",
+        "firstName",
+        "lastName"
+      ]
+    },
+    "Contact": {
+      "title": "Contact",
+      "type": "object",
+      "properties": {
+        "birthDate": {
+          "example": "1990-01-21",
+          "type": "string",
+          "format": "date"
+        },
+        "email": {
+          "example": "abc@xyz.com",
+          "type": "string"
+        },
+        "fax": {
+          "description": "FAX number",
+          "type": "string"
+        },
+        "firstName": {
+          "example": "John",
+          "type": "string"
+        },
+        "language": {
+          "$ref": "#/definitions/Language"
+        },
+        "lastName": {
+          "example": "Doe",
+          "type": "string"
+        },
+        "mobile": {
+          "description": "SMS phone numer",
+          "type": "string"
+        },
+        "nationality": {
+          "description": "2 letter Country ISO code",
+          "example": "CH",
+          "type": "string"
+        },
+        "phone": {
+          "description": "landline phone number",
+          "type": "string"
+        },
+        "salutation": {
+          "$ref": "#/definitions/Salutation"
+        },
+        "title": {
+          "$ref": "#/definitions/Title"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName"
+      ]
+    },
+    "IdentityType": {
+      "title": "IdentityType",
+      "type": "string",
+      "enum": [
+        "L",
+        "N",
+        "B",
+        "C",
+        "Ci",
+        "F",
+        "G",
+        "Swiss Legitimation Card",
+        "Swiss Driving Licence",
+        "Foreign Passport",
+        "Swiss Identity Card",
+        "Identity card Germany",
+        "Identity card Belgium",
+        "Identity card Finland",
+        "Identity card France",
+        "Identity card Greece",
+        "Identity card Italy",
+        "Identity card Liechtenstein",
+        "Identity card Luxemburg",
+        "Identity card Malta",
+        "Identity card Monaco",
+        "Identity card Netherlands",
+        "Identity card Austria",
+        "Identity card Portugal",
+        "Identity card San Marino",
+        "Identity card Spain",
+        "Identity card Bulgaria",
+        "Identity card Estonia",
+        "Identity card Croatia",
+        "Identity card Latvia",
+        "Identity card Lithuania",
+        "Identity card Poland",
+        "Identity card Romania",
+        "Identity card Slovakia",
+        "Identity card Slovenia",
+        "Identity card Czech Republic",
+        "Identity card Hungary",
+        "Identity card Sweden",
+        "Swiss Passport"
+      ]
+    },
+    "ServiceType": {
+      "title": "ServiceType",
+      "type": "string",
+      "enum": [
+        "FIXNET",
+        "MOBILE"
+      ]
+    },
+    "ServiceSubType": {
+      "title": "ServiceSubType",
+      "type": "string",
+      "enum": [
+        "PREPAID",
+        "POSTPAID",
+        "POSTPAID_PLAN",
+        "DATA_POSTPAID",
+        "DATA_POSTPAID_PLAN",
+        "DATA_PREPAID",
+        "DATACARD",
+        "MOBILE_PLAN_UNLIMITED",
+        "POSTPAID_LIGHT",
+        "VOICE",
+        "VOICE_INTERNET",
+        "INTERNET",
+        "TV"
+      ]
+    },
+    "RequestType": {
+      "title": "RequestType",
+      "type": "string",
+      "enum": [
+        "ACTIVATION",
+        "RATEPLAN_CHANGE",
+        "OPTION_CHANGE",
+        "CONTRACT_EXTENSION",
+        "RENEWAL",
+        "HARDWARE_ACCESSORY",
+        "MODIFY"
+      ],
+      "example": "ACTIVATION"
+    },
+    "PreferredCommChannel": {
+      "title": "PreferredCommChannel",
+      "type": "string",
+      "enum": [
+        "SMS",
+        "EMAIL"
+      ]
+    },
+    "LineCheckForNewActivationRequest": {
+      "title": "LineCheckForNewActivationRequest",
+      "type": "object",
+      "properties": {
+        "lri": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/LineCheckAddress"
+        },
+        "accessDescriptors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccessDescriptor"
+          }
+        },
+        "technology": {
+          "$ref": "#/definitions/Technology"
+        },
+        "segment": {
+          "$ref": "#/definitions/Segment"
+        },
+        "qualifyBundles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lang": {
+          "$ref": "#/definitions/Language"
+        }
+      },
+      "required": [
+        "address",
+        "segment"
+      ]
+    },
+    "LineCheckForModificationRequest": {
+      "title": "LineCheckForModificationRequest",
+      "type": "object",
+      "properties": {
+        "serial": {
+          "type": "string",
+          "example": "U0000914368"
+        },
+        "accessDescriptors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccessDescriptor"
+          }
+        },
+        "technology": {
+          "$ref": "#/definitions/Technology"
+        },
+        "qualifyBundles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lang": {
+          "$ref": "#/definitions/Language"
+        }
+      },
+      "required": [
+        "serial"
+      ]
+    },
+    "LineCheckEligibility": {
+      "title": "LineCheckEligibility",
+      "type": "object",
+      "properties": {
+        "eligibleBundles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EligibleBundle"
+          },
+          "x-omitempty": true
+        },
+        "qualifiedBundles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-omitempty": true
+        },
+        "eligibleAccess": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EligibleAccess"
+          },
+          "x-omitempty": true
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Technology"
+          },
+          "x-omitempty": true
+        },
+        "address": {
+          "$ref": "#/definitions/LineCheckAddress"
+        },
+        "serial": {
+          "type": "string",
+          "example": "U0000914368",
+          "description": "Fixnet Product serial"
+        }
+      }
+    },
+    "EligibleAccess": {
+      "title": "EligibleAccess",
+      "type": "object",
+      "required": [
+        "access",
+        "technology",
+        "status",
+        "maxSpeed",
+        "timeSlot",
+        "preOrderable",
+        "alwaysOn"
+      ],
+      "properties": {
+        "access": {
+          "$ref": "#/definitions/AccessReference"
+        },
+        "address": {
+          "$ref": "#/definitions/LineCheckAddress"
+        },
+        "technology": {
+          "$ref": "#/definitions/Technology"
+        },
+        "status": {
+          "$ref": "#/definitions/AccessStatus"
+        },
+        "startPoint": {
+          "$ref": "#/definitions/StartPoint"
+        },
+        "maxSpeed": {
+          "$ref": "#/definitions/LineSpeed"
+        },
+        "currentDnType": {
+          "example": "sample",
+          "type": "string"
+        },
+        "timeSlot": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeSlot"
+          },
+          "x-omitempty": true
+        },
+        "lri": {
+          "example": "078787868",
+          "type": "string"
+        },
+        "otoIdState": {
+          "$ref": "#/definitions/OtoIdState"
+        },
+        "preOrderable": {
+          "type": "boolean"
+        },
+        "alwaysOn": {
+          "type": "boolean"
+        },
+        "lexId": {
+          "example": "0786868",
+          "type": "string"
+        },
+        "serId": {
+          "example": 2424442,
+          "type": "string"
+        },
+        "evcOvcEndpointId": {
+          "example": "0909",
+          "type": "string"
+        },
+        "serfunction": {
+          "example": "0909",
+          "type": "string"
+        },
+        "subscriberDomain": {
+          "example": 2424442,
+          "type": "string"
+        },
+        "connectionPoint": {
+          "example": 2424442,
+          "type": "string"
+        },
+        "lineSegment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LineSegment"
+          },
+          "x-omitempty": true
+        },
+        "coverage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LayerCoverage"
+          },
+          "x-omitempty": true
+        },
+        "plannedUpgrades": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlannedUpgrade"
+          },
+          "x-omitempty": true
+        },
+        "technologyType": {
+          "type": "string"
+        }
+      }
+    },
+    "PlannedUpgrade": {
+      "title": "PlannedUpgrade",
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/PlannedUpgradeType"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "expectedSpeed": {
+          "$ref": "#/definitions/LineSpeed"
+        }
+      }
+    },
+    "PlannedUpgradeType": {
+      "title": "PlannedUpgradeType",
+      "type": "string",
+      "enum": [
+        "5G",
+        "COPPER",
+        "FIBER"
+      ]
+    },
+    "LayerCoverage": {
+      "title": "LayerCoverage",
+      "type": "object",
+      "properties": {
+        "layer": {
+          "$ref": "#/definitions/Layer"
+        },
+        "indoor": {
+          "$ref": "#/definitions/LineSpeed"
+        },
+        "outdoor": {
+          "$ref": "#/definitions/LineSpeed"
+        }
+      }
+    },
+    "Layer": {
+      "title": "Layer",
+      "type": "string",
+      "enum": [
+        "XG",
+        "5G",
+        "4G",
+        "3G",
+        "2G"
+      ]
+    },
+    "OtoIdState": {
+      "title": "OtoIdState",
+      "type": "string",
+      "enum": [
+        "BEPREADY",
+        "OTOREADY",
+        "UNKNOWN"
+      ]
+    },
+    "TimeSlot": {
+      "title": "TimeSlot",
+      "type": "object",
+      "properties": {
+        "start": {
+          "example": "2018-08-30T10:00:00.000Z",
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "example": "2018-08-30T10:00:00.000Z",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "LineSpeed": {
+      "title": "LineSpeed",
+      "type": "object",
+      "properties": {
+        "maxBandwidthDown": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxBandwidthUp": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "speedProfiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpeedProfile"
+          },
+          "x-omitempty": true
+        }
+      }
+    },
+    "SpeedProfile": {
+      "title": "SpeedProfile",
+      "type": "object",
+      "properties": {
+        "profileTech": {
+          "$ref": "#/definitions/ProfileTech"
+        },
+        "bandwidthDown": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "bandwidthUp": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lineCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ProfileTech": {
+      "title": "ProfileTech",
+      "type": "string",
+      "enum": [
+        "ADSL",
+        "ADSL2plus",
+        "ADSL2plusM",
+        "SHDSL",
+        "SHDSLbis",
+        "SHDSLPacketMode",
+        "SHDSLbisPacketMode"
+      ]
+    },
+    "StartPoint": {
+      "title": "StartPoint",
+      "type": "object",
+      "properties": {
+        "taxRegion": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "accessNet": {
+          "example": "HER",
+          "type": "string"
+        },
+        "unitType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "unitNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sse": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "contactType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "contactNr": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "LineSegment": {
+      "title": "LineSegment",
+      "type": "object",
+      "properties": {
+        "length": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "diameter": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "AccessReference": {
+      "title": "AccessReference",
+      "type": "object",
+      "properties": {
+        "tspId": {
+          "type": "string",
+          "example": "98745"
+        },
+        "accessType": {
+          "$ref": "#/definitions/AccessDescriptor"
+        }
+      }
+    },
+    "Technology": {
+      "title": "Technology",
+      "type": "string",
+      "enum": [
+        "COPPER",
+        "FIBER",
+        "MOBILE",
+        "ETHERNET"
+      ],
+      "example": "FIBER"
+    },
+    "AccessStatus": {
+      "title": "AccessStatus",
+      "type": "string",
+      "enum": [
+        "NEW",
+        "ACTIVE",
+        "INACTIVE",
+        "PLANNED"
+      ],
+      "example": "NEW"
+    },
+    "AccessName": {
+      "title": "AccessName",
+      "type": "string",
+      "enum": [
+        "TAL",
+        "BBCS",
+        "ALEX",
+        "PTS",
+        "ETHERNET"
+      ],
+      "example": "BBCS"
+    },
+    "EligibleBundle": {
+      "title": "EligibleBundle",
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RatePlan"
+          },
+          "x-omitempty": true
+        },
+        "access": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Access"
+          },
+          "x-omitempty": true
+        }
+      },
+      "required": [
+        "products",
+        "access"
+      ]
+    },
+    "Access": {
+      "title": "Access",
+      "type": "object",
+      "properties": {
+        "tspId": {
+          "type": "string"
+        },
+        "accessType": {
+          "$ref": "#/definitions/AccessDescriptor"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Option"
+          },
+          "x-omitempty": true
+        },
+        "best": {
+          "example": false,
+          "type": "boolean"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Option": {
+      "title": "Option",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/OptionType"
+        },
+        "access": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccessReference"
+          },
+          "x-omitempty": true
+        }
+      }
+    },
+    "OptionType": {
+      "title": "OptionType",
+      "type": "string",
+      "enum": [
+        "INTERNET-FIBER",
+        "INTERNET-MBB",
+        "TV"
+      ]
+    },
+    "RatePlan": {
+      "title": "RatePlan",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    "ElectricianEligibilityRequest": {
+      "title": "ElectricianEligibilityRequest",
+      "type": "object",
+      "properties": {
+        "serial": {
+          "type": "string",
+          "example": "U0001536203",
+          "description": "Required when Modification or Migration"
+        },
+        "address": {
+          "$ref": "#/definitions/LineCheckAddress"
+        },
+        "segment": {
+          "$ref": "#/definitions/Segment"
+        },
+        "parentProduct": {
+          "type": "string"
+        },
+        "eligibleProducts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "technology": {
+          "$ref": "#/definitions/Technology"
+        },
+        "lang": {
+          "$ref": "#/definitions/Language"
+        }
+      },
+      "required": [
+        "address",
+        "segment",
+        "parentProduct",
+        "eligibleProducts"
+      ]
+    },
+    "LineCheckAddress": {
+      "title": "LineCheckAddress",
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "houseNr": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "street",
+        "houseNr",
+        "city",
+        "zipcode"
+      ]
+    },
+    "Segment": {
+      "title": "Segment",
+      "type": "string",
+      "enum": [
+        "Residential",
+        "SoHo",
+        "Employee"
+      ]
+    },
+    "AccessDescriptor": {
+      "title": "AccessDescriptor",
+      "type": "string",
+      "enum": [
+        "BBCSonTDM_PPP_ADSL",
+        "BBCSonTDM_PPP_VDSL",
+        "BBCSnaked_PPP_ADSL",
+        "BBCSnaked_PPP_VDSL",
+        "BBCSonTDM_DHCP_ADSL",
+        "BBCSonTDM_DHCP_VDSL",
+        "BBCSnaked_DHCP_ADSL",
+        "BBCSnaked_DHCP_VDSL",
+        "XDSLonTAL_DHCP_ADSL2plus",
+        "XDSLonTAL_DHCP_ADSL2plusM",
+        "XDSLonTAL_DHCP_SHDSL",
+        "XDSLonTAL_DHCP_SHDSLbis",
+        "MSANonTAL_BOTH_ADSL2plus",
+        "L1_DHCP_FIBER",
+        "L1_XGS_DHCP_FIBER",
+        "L2_DHCP_FIBER",
+        "L3_DHCP_FIBER_GB",
+        "L3_XGS_DHCP_FIBER",
+        "MBB_DHCP",
+        "ALETH",
+        "ALETT",
+        "CES"
+      ]
+    },
+    "Account": {
+      "title": "Account",
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "contact": {
+          "$ref": "#/definitions/AccountContact"
+        },
+        "billingAddress": {
+          "$ref": "#/definitions/Address"
+        },
+        "billingAddressSameAsPrimaryAddress": {
+          "type": "boolean"
+        },
+        "primaryAddress": {
+          "$ref": "#/definitions/Address"
+        },
+        "weMobile": {
+          "$ref": "#/definitions/WeMobile"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Service"
+          },
+          "x-omitempty": true
+        },
+        "segmentType": {
+          "$ref": "#/definitions/Segment"
+        }
+      }
+    },
+    "Service": {
+      "title": "Service",
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "relationType": {
+          "$ref": "#/definitions/RelationType"
+        },
+        "fixnetSubscriptionState": {
+          "$ref": "#/definitions/SubscriptionState"
+        },
+        "postpaidSubscriptionState": {
+          "$ref": "#/definitions/SubscriptionState"
+        },
+        "installationAddress": {
+          "$ref": "#/definitions/Address"
+        },
+        "otoId": {
+          "type": "string"
+        },
+        "unverifiedOtoId": {
+          "type": "string"
+        },
+        "contract": {
+          "$ref": "#/definitions/Contract"
+        },
+        "status": {
+          "type": "string"
+        },
+        "contact": {
+          "$ref": "#/definitions/AccountContact"
+        },
+        "ratePlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountRatePlan"
+          },
+          "x-omitempty": true
+        },
+        "access": {
+          "$ref": "#/definitions/ServiceAccess"
+        }
+      }
+    },
+    "ServiceAccess": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "string",
+          "example": "Sunrise Home"
+        },
+        "descriptor": {
+          "$ref": "#/definitions/AccessDescriptor"
+        },
+        "identifier": {
+          "type": "string",
+          "example": "B.101.233.420.1.1"
+        }
+      }
+    },
+    "AccountRatePlan": {
+      "title": "AccountRatePlan",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/RatePlanType"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "fee": {
+          "type": "number"
+        },
+        "cliNumber": {
+          "type": "string"
+        },
+        "cliNumbers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CliInfo"
+          }
+        }
+      }
+    },
+    "CliInfo": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/CliInfoType"
+        }
+      }
+    },
+    "CliInfoType": {
+      "type": "string",
+      "enum": [
+        "MAIN",
+        "ADDITIONAL"
+      ]
+    },
+    "AccountContact": {
+      "title": "AccountContact",
+      "type": "object",
+      "properties": {
+        "birthdate": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "emailConfirmed": {
+          "type": "boolean"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "languageCode": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "salutation": {
+          "type": "string"
+        }
+      }
+    },
+    "LegalAddress": {
+      "title": "LegalAddress",
+      "type": "object",
+      "properties": {
+        "additional": {
+          "type": "string",
+          "example": "b"
+        },
+        "country": {
+          "type": "string",
+          "example": "CH"
+        },
+        "zip": {
+          "type": "string",
+          "example": "8001"
+        },
+        "street": {
+          "type": "string",
+          "example": "Aehrenweg"
+        },
+        "house": {
+          "type": "string",
+          "example": "101"
+        },
+        "city": {
+          "type": "string",
+          "example": "Zürich"
+        }
+      }
+    },
+    "Address": {
+      "title": "Address",
+      "type": "object",
+      "properties": {
+        "additional": {
+          "type": "string"
+        },
+        "countryIsoCode": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "salutation": {
+          "type": "string"
+        },
+        "streetName": {
+          "type": "string"
+        },
+        "streetNumber": {
+          "type": "string"
+        },
+        "town": {
+          "type": "string"
+        }
+      }
+    },
+    "CartModificationList": {
+      "title": "CartModificationList",
+      "type": "object",
+      "properties": {
+        "cartModifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CartModifications"
+          },
+          "x-omitempty": true
+        },
+        "promotionDetails": {
+          "$ref": "#/definitions/PromotionDiscount"
+        }
+      }
+    },
+    "CartModifications": {
+      "title": "CartModifications",
+      "type": "object",
+      "properties": {
+        "cartCode": {
+          "type": "string"
+        },
+        "cartPackage": {
+          "$ref": "#/definitions/BundleTemplate"
+        },
+        "deliveryModeChanged": {
+          "type": "boolean"
+        },
+        "entry": {
+          "$ref": "#/definitions/OrderEntry"
+        },
+        "guid": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "quantityAdded": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "PromotionDiscount": {
+      "title": "PromotionDiscount",
+      "type": "object",
+      "properties": {
+        "device": {
+          "type": "string"
+        },
+        "discountPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "promotionEnabled": {
+          "type": "boolean"
+        },
+        "regularPrice": {
+          "type": "number",
+          "format": "double"
+        },
+        "subscription": {
+          "type": "string"
+        }
+      }
+    },
+    "AddToCartRequest": {
+      "title": "AddToCartRequest",
+      "type": "object",
+      "properties": {
+        "segmentCode": {
+          "$ref": "#/definitions/SegmentCode"
+        },
+        "userActions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CartUserAction"
+          }
+        },
+        "lang": {
+          "$ref": "#/definitions/Language"
+        },
+        "addToSameBundle": {
+          "type": "boolean",
+          "description": "Add items referred in the userActions in the same bundle."
+        },
+        "custPreferredGroup": {
+          "$ref": "#/definitions/MobilePack"
+        }
+      },
+      "required": [
+        "segmentCode",
+        "userActions"
+      ]
+    },
+    "SegmentCode": {
+      "title": "SegmentCode",
+      "type": "string",
+      "enum": [
+        "RC",
+        "SOHO"
+      ],
+      "example": "RC"
+    },
+    "CartUserAction": {
+      "title": "CartUserAction",
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "bundleNo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "componentCode": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "serviceSerial": {
+          "type": "string"
+        },
+        "hardwarePlanTerm": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hardwareUpfront": {
+          "type": "number",
+          "format": "double"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hasPayOff": {
+          "type": "boolean",
+          "description": "Terminate existing Device Plan by paying the remaining installments amount."
+        },
+        "specialFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecialFields"
+          }
+        }
+      },
+      "required": [
+        "action",
+        "componentCode",
+        "productCode"
+      ]
+    },
+    "UpdateCartRequest": {
+      "title": "UpdateCartRequest",
+      "type": "object",
+      "properties": {
+        "userActions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserAction"
+          }
+        },
+        "lang": {
+          "$ref": "#/definitions/Language"
+        }
+      },
+      "required": [
+        "userActions"
+      ]
+    },
+    "UserAction": {
+      "title": "UserAction",
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "componentCode": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "segmentCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "action",
+        "componentCode",
+        "productCode",
+        "segmentCode"
+      ]
+    },
+    "Language": {
+      "title": "Language",
+      "type": "string",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "it"
+      ]
+    },
+    "MobilePack": {
+      "title": "MobilePack",
+      "type": "string",
+      "enum": [
+        "WE_MOBILE_PACK_M",
+        "WE_MOBILE_PACK_L",
+        "WE_MOBILE_PACK_XL"
+      ]
+    },
+    "RatePlanType": {
+      "title": "RatePlanType",
+      "type": "string",
+      "enum": [
+        "MOBILE_PREPAID",
+        "MOBILE_POSTPAID",
+        "TV",
+        "LANDLINE_PHONE",
+        "FIX_INTERNET",
+        "MOBILE_COVERAGE",
+        "OTT_TV",
+        "UNDEFINED"
+      ],
+      "example": "MOBILE_POSTPAID"
+    },
+    "Cart": {
+      "title": "Cart",
+      "type": "object",
+      "properties": {
+        "appliedProductPromotions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PromotionResult"
+          },
+          "x-omitempty": true
+        },
+        "cartPackage": {
+          "$ref": "#/definitions/BundleTemplate"
+        },
+        "customer": {
+          "$ref": "#/definitions/CartCustomer"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderEntry"
+          },
+          "x-omitempty": true
+        },
+        "globalDiscounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GlobalDiscount"
+          },
+          "x-omitempty": true
+        },
+        "guid": {
+          "example": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+          "type": "string",
+          "format": "uuid"
+        },
+        "totalPrice": {
+          "$ref": "#/definitions/Price"
+        },
+        "totalRecurringCharges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Price"
+          },
+          "x-omitempty": true
+        }
+      }
+    },
+    "OrderEntry": {
+      "title": "OrderEntry",
+      "type": "object",
+      "properties": {
+        "bundleNo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "component": {
+          "$ref": "#/definitions/BundleTemplate"
+        },
+        "totalPrice": {
+          "$ref": "#/definitions/Price"
+        },
+        "totalRecurringCharges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Price"
+          }
+        },
+        "specialFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SpecialFields"
+          },
+          "x-omitempty": true
+        },
+        "entryNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rootBundleTemplate": {
+          "$ref": "#/definitions/BundleTemplate"
+        }
+      },
+      "required": [
+        "entryNumber"
+      ]
+    },
+    "SpecialFields": {
+      "title": "SpecialFields",
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "example": "finalInstallment"
+        },
+        "value": {
+          "type": "string",
+          "example": "35.0"
+        }
+      }
+    },
+    "Product": {
+      "title": "Product",
+      "type": "object",
+      "properties": {
+        "availability": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "entitlements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Entitlement"
+          },
+          "x-omitempty": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "isYoungProduct": {
+          "type": "boolean"
+        },
+        "oneLineTitle": {
+          "type": "string"
+        },
+        "oneTimeCharges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Price"
+          },
+          "x-omitempty": true
+        },
+        "downPayment": {
+          "$ref": "#/definitions/Price"
+        },
+        "hardwarePlansRate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HardwarePlanRate"
+          },
+          "x-omitempty": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "parentProduct": {
+          "$ref": "#/definitions/Product"
+        },
+        "picture": {
+          "$ref": "#/definitions/Picture"
+        },
+        "price": {
+          "$ref": "#/definitions/Price"
+        },
+        "productType": {
+          "$ref": "#/definitions/SunCodeListEntry"
+        },
+        "promotionInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PromotionInfo"
+          },
+          "x-omitempty": true
+        },
+        "promoText1": {
+          "type": "string"
+        },
+        "promoText2": {
+          "type": "string"
+        },
+        "recurringCharges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Price"
+          },
+          "x-omitempty": true
+        },
+        "subGroup": {
+          "type": "string"
+        },
+        "subscriptionTerm": {
+          "$ref": "#/definitions/SubscriptionTerm"
+        },
+        "productReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductReference"
+          },
+          "x-omitempty": true
+        },
+        "color": {
+          "$ref": "#/definitions/Color"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "memory": {
+          "$ref": "#/definitions/Memory"
+        },
+        "bundleTemplates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BundleTemplate"
+          }
+        },
+        "defaultBundleTemplates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BundleTemplate"
+          }
+        }
+      }
+    },
+    "SubscriptionTerm": {
+      "title": "SubscriptionTerm",
+      "type": "object",
+      "properties": {
+        "termOfServiceNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "termOfServiceFrequency": {
+          "$ref": "#/definitions/TermOfServiceFrequency"
+        }
+      }
+    },
+    "TermOfServiceFrequency": {
+      "title": "TermOfServiceFrequency",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "monthly"
+        },
+        "name": {
+          "type": "string",
+          "example": "Month(s)"
+        }
+      }
+    },
+    "SunCodeListEntry": {
+      "title": "SunCodeListEntry",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Memory": {
+      "title": "Memory",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductReference": {
+      "title": "ProductReference",
+      "type": "object",
+      "properties": {
+        "target": {
+          "$ref": "#/definitions/Product"
+        }
+      }
+    },
+    "Color": {
+      "title": "Color",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "colorHexValue": {
+          "type": "string"
+        }
+      }
+    },
+    "PromotionInfo": {
+      "title": "PromotionInfo",
+      "type": "object",
+      "properties": {
+        "discountAmount": {
+          "type": "number",
+          "format": "double"
+        },
+        "installmentWithPromo": {
+          "type": "number",
+          "format": "double"
+        },
+        "lastInstallmentWithPromo": {
+          "type": "number",
+          "format": "double"
+        },
+        "promoId": {
+          "type": "string"
+        },
+        "targetedFor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-omitempty": true
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Picture": {
+      "title": "Picture",
+      "type": "object",
+      "properties": {
+        "altText": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "HardwarePlanRate": {
+      "title": "HardwarePlanRate",
+      "type": "object",
+      "properties": {
+        "finalInstallmentAmount": {
+          "$ref": "#/definitions/Price"
+        },
+        "installmentThresholdMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "oneTimeCharge": {
+          "$ref": "#/definitions/Price"
+        },
+        "product": {
+          "type": "string"
+        },
+        "recurringCharge": {
+          "$ref": "#/definitions/Price"
+        },
+        "totalInstallmentMonths": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Entitlement": {
+      "title": "Entitlement",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "entitlementFeatures": {
+          "type": "string"
+        },
+        "entitlementName": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Price": {
+      "title": "Price",
+      "type": "object",
+      "properties": {
+        "billingTime": {
+          "$ref": "#/definitions/BillingTime"
+        },
+        "currencyIso": {
+          "type": "string"
+        },
+        "discounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Discount"
+          },
+          "x-omitempty": true
+        },
+        "originalPrice": {
+          "$ref": "#/definitions/PriceValue"
+        },
+        "price": {
+          "$ref": "#/definitions/PriceValue"
+        },
+        "value": {
+          "type": "number",
+          "format": "double"
+        },
+        "priceType": {
+          "type": "string"
+        }
+      }
+    },
+    "PriceValue": {
+      "title": "PriceValue",
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "BillingTime": {
+      "title": "BillingTime",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nameInOrder": {
+          "type": "string"
+        },
+        "orderNumber": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Discount": {
+      "title": "Discount",
+      "type": "object",
+      "properties": {
+        "absolute": {
+          "type": "boolean"
+        },
+        "isPromotionDependent": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "numberOfMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "PromotionResult": {
+      "title": "PromotionResult",
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "consumedEntries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PromotionOrderEntryConsumed"
+          },
+          "x-omitempty": true
+        },
+        "promotion": {
+          "$ref": "#/definitions/Promotion"
+        }
+      }
+    },
+    "PromotionOrderEntryConsumed": {
+      "title": "PromotionOrderEntryConsumed",
+      "type": "object",
+      "required": [
+        "adjustedUnitPrice",
+        "quantity",
+        "orderEntryNumber"
+      ],
+      "properties": {
+        "adjustedUnitPrice": {
+          "type": "number",
+          "format": "double",
+          "example": 200.5
+        },
+        "code": {
+          "type": "string",
+          "example": "P1_New_Promo_Apple_Imac"
+        },
+        "orderEntryNumber": {
+          "type": "integer",
+          "format": "int32",
+          "example": 2
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int64",
+          "example": 0
+        }
+      }
+    },
+    "Promotion": {
+      "title": "Promotion",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "contractDuration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "infoText": {
+          "type": "string"
+        },
+        "infoTitle": {
+          "type": "string"
+        },
+        "promoDuration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "promoType": {
+          "type": "string"
+        },
+        "promotionType": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true
+        }
+      }
+    },
+    "BundleTemplate": {
+      "title": "BundleTemplate",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "campaignDetails": {
+          "$ref": "#/definitions/Campaign"
+        },
+        "parentTemplate": {
+          "$ref": "#/definitions/BundleTemplate"
+        },
+        "childBundleTemplates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BundleTemplate"
+          }
+        },
+        "priceBundleRules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PriceBundleRule"
+          }
+        },
+        "maxItemsAllowed": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minItemsRequired": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "processType": {
+          "type": "string"
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sunOrderType": {
+          "$ref": "#/definitions/SunOrderType"
+        },
+        "segment": {
+          "$ref": "#/definitions/CodeListEntry"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "PriceBundleRule": {
+      "title": "PriceBundleRule",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "targetProducts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Campaign": {
+      "title": "Campaign",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "campaignDuration": {
+          "type": "string"
+        },
+        "contractDuration": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "displayText": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true,
+          "example": "2020-09-02T14:56:39.000+02:00"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true,
+          "example": "2020-09-02T14:56:39.000+02:00"
+        }
+      }
+    },
+    "CodeListEntry": {
+      "title": "CodeListEntry",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "CartCustomer": {
+      "title": "CartCustomer",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    },
+    "Salutation": {
+      "title": "Salutation",
+      "type": "string",
+      "enum": [
+        "Man",
+        "Woman",
+        "UnmarriedWoman"
+      ],
+      "example": "Man"
+    },
+    "Title": {
+      "title": "Title",
+      "type": "string",
+      "enum": [
+        "NONE",
+        "DOCTOR",
+        "PROFESSOR"
+      ],
+      "example": "NONE"
+    },
+    "WeMobile": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "$ref": "#/definitions/WeMobileLevel"
+        },
+        "status": {
+          "$ref": "#/definitions/WeMobileStatus"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true,
+          "example": "2020-09-02T14:56:39.000+02:00"
+        }
+      }
+    },
+    "WeMobileLevel": {
+      "type": "string",
+      "enum": [
+        "WE_MOBILE_M_PACK",
+        "WE_MOBILE_L_PACK",
+        "WE_MOBILE_XL_PACK"
+      ],
+      "example": "WE_MOBILE_XL_PACK"
+    },
+    "WeMobileStatus": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "INACTIVE",
+        "INITIAL",
+        "BROKEN"
+      ],
+      "example": "ACTIVE"
+    },
+    "ProductGroup": {
+      "title": "ProductGroup",
+      "type": "string",
+      "enum": [
+        "BUSINESS_COMPANY",
+        "BUS_FIXNET",
+        "BUS_FIX_INTERNET",
+        "BUS_FIX_VOICE",
+        "FIXNET",
+        "FIXNET_APP",
+        "HOME",
+        "HOME_UNLIMITED",
+        "MOBILE",
+        "MOBILE_COVERAGE",
+        "MOBILE_WEARABLE",
+        "MTV_HOME",
+        "OFFICE_PRO",
+        "OFFICE_PRO_LIGHT",
+        "PRODUCT",
+        "SOLUTION",
+        "TOOLS",
+        "WE_HOME",
+        "WE_HOME_PLUS",
+        "WE_MOBILE_NON_PACK",
+        "WE_MOBILE_PACK_L",
+        "WE_MOBILE_PACK_M",
+        "WE_MOBILE_PACK_XL",
+        "WE_MOBILE",
+        "MOBILE_LIGHT",
+        "MOBILE_PREPAID",
+        "MOBILE_POSTPAID",
+        "FIX_INTERNET"
+      ],
+      "example": "WE_MOBILE_PACK_L"
+    },
+    "ProductSubGroup": {
+      "title": "ProductSubGroup",
+      "type": "string",
+      "enum": [
+        "ADSL",
+        "BUNDLE",
+        "BUSINESS_CLOUD_PBX",
+        "BUSINESS_INTERNET_DIRECT_BBCS_CU",
+        "BUSINESS_INTERNET_DIRECT_BBCS_F",
+        "DATACARD",
+        "DATA_POSTPAID",
+        "DATA_POSTPAID_PLAN",
+        "DATA_PREPAID",
+        "DDI",
+        "FIBER",
+        "INDOORBOX",
+        "INTERNET",
+        "ISDN",
+        "MOBILE_PLAN_UNLIMITED",
+        "NONE",
+        "PARENT",
+        "PBX_CLOUD",
+        "PBX_LOCAL",
+        "POSTPAID",
+        "POSTPAID_LIGHT",
+        "POSTPAID_PLAN",
+        "PREPAID",
+        "SDSL",
+        "SECURITY",
+        "SELECT",
+        "TV",
+        "TV_APP",
+        "TV_LIGHT",
+        "UNLIMITED",
+        "VDSL",
+        "VOICE",
+        "VOICE_DDI",
+        "VOICE_INTERNET",
+        "VOICE_ISDN"
+      ],
+      "example": "INTERNET"
+    },
+    "SunOrderType": {
+      "title": "SunOrderType",
+      "type": "string",
+      "enum": [
+        "MOBILE_ORDER",
+        "MOBILE_SERVICE_OPTION_ORDER",
+        "MOBILE_ACCESSORY_ORDER",
+        "HOME_SERVICE_OPTION_ORDER",
+        "HOME_ORDER",
+        "HOME_ACCESSORY_ORDER",
+        "HARDWARE_ONLY_ORDER",
+        "ACCESSORY_ONLY_ORDER",
+        "MOBILE_INTERNET_ORDER",
+        "MOBILE_PRE_TO_POST_ORDER",
+        "NEW_DEVICE_ORDER",
+        "WIRELINE_ORDER",
+        "FREEDOM_SHARE_DATA_ORDER",
+        "ASSOCIATED_MOBILE_ORDER",
+        "OTT_HARDWARE_ORDER",
+        "NEW_WIN_ACC_ORDER",
+        "NEW_MOBILE_ACC_ORDER",
+        "SERVICE_OPTION",
+        "TV_SERVICE_OPTION",
+        "VOICE_SERVICE_OPTION",
+        "INTERNET_SERVICE_OPTION",
+        "MP_SERVICE_OPTION",
+        "DEVICE_SERVICE_OPTION",
+        "ADDITIONAL_OPTION",
+        "ACCESSORY",
+        "RATE_PLAN",
+        "HARDWARE",
+        "DEVICE_PLAN",
+        "SIM_CARD",
+        "NUMBER",
+        "FAKE_HARDWARE",
+        "FSD_HARDWARE",
+        "FSD_DEVICE_PLAN",
+        "FSD_RATE_PLAN",
+        "FSD_SIM_CARD",
+        "FSD_NUMBER",
+        "INTERNET",
+        "TV",
+        "VOICE",
+        "INSTALLATION",
+        "OPEN_INSTALLMENT",
+        "CHANGE_FEE",
+        "ACCESSORY_PLAN",
+        "SECURITY_PAYMENT",
+        "OTT_ORDER",
+        "OTT_SUBSCRIPTION",
+        "FEE",
+        "TV_APP",
+        "GIFT",
+        "MOBILE_INTERNET_TRACK_ORDER",
+        "MOBILE_INTERNET_WIFI_ORDER",
+        "MOBILE_INTERNET_SURF_ORDER",
+        "MI_SERVICE_OPTION"
+      ],
+      "example": "MOBILE_ORDER"
+    },
+    "ServerError": {
+      "title": "ResponseErrorBody",
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "GetProductMigrationMatrixResponse": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductType"
+          }
+        }
+      },
+      "title": "GetProductMigrationMatrixResponse"
+    },
+    "ProductType": {
+      "type": "object",
+      "required": [
+        "migrationFee",
+        "productName",
+        "transition"
+      ],
+      "properties": {
+        "bindingPromoName": {
+          "type": "string",
+          "description": "binding promo name for the product"
+        },
+        "bindingPromoViolated": {
+          "type": "boolean",
+          "description": "binding promo violation",
+          "x-nullable": true
+        },
+        "discountEligible": {
+          "type": "boolean",
+          "description": "eligible for discount or not"
+        },
+        "earliestMigrationDate": {
+          "type": "string",
+          "format": "date-time",
+          "x-nullable": true,
+          "description": "earliest product Migration Date"
+        },
+        "migrationFee": {
+          "type": "number",
+          "example": 0,
+          "description": "migration fee"
+        },
+        "productName": {
+          "type": "string",
+          "example": "We Mobile M",
+          "description": "product name"
+        },
+        "recommendation": {
+          "$ref": "#/definitions/RecommendationType"
+        },
+        "transition": {
+          "type": "string",
+          "example": "upgrade",
+          "description": "product transition"
+        }
+      },
+      "title": "ProductType"
+    },
+    "RecommendationType": {
+      "type": "object",
+      "properties": {
+        "isRecommended": {
+          "type": "boolean",
+          "description": "recommended flag"
+        },
+        "recommendedCampaign": {
+          "type": "string",
+          "description": "recommended campaign name"
+        },
+        "recommendedProduct": {
+          "type": "string",
+          "description": "recommended product name"
+        }
+      },
+      "title": "RecommendationType"
+    },
+    "GetPackMigrationMatrixResponse": {
+      "type": "object",
+      "properties": {
+        "mobilePacks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MobilePackLevel"
+          }
+        }
+      },
+      "title": "GetPackMigrationMatrixResponse"
+    },
+    "MobilePackLevel": {
+      "type": "object",
+      "properties": {
+        "packName": {
+          "$ref": "#/definitions/WeMobileLevel"
+        },
+        "recommendation": {
+          "$ref": "#/definitions/RecommendationType"
+        }
+      },
+      "title": "MobilePackLevel"
+    },
+    "GetPriceOfferingsRequest": {
+      "type": "object",
+      "required": [
+        "products"
+      ],
+      "properties": {
+        "lineItemFilter": {
+          "$ref": "#/definitions/LineItemFilterType"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductPriceOfferRequestType"
+          }
+        }
+      },
+      "title": "GetPriceOfferingsRequest"
+    },
+    "ProductPriceOfferRequestType": {
+      "type": "object",
+      "required": [
+        "orderIndex",
+        "orderType",
+        "productName"
+      ],
+      "properties": {
+        "contractExtension": {
+          "type": "boolean",
+          "description": "Contract Extension or not"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "duration"
+        },
+        "orderIndex": {
+          "type": "string",
+          "example": 2,
+          "description": "index of order"
+        },
+        "orderType": {
+          "$ref": "#/definitions/OrderType"
+        },
+        "lineItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LineItemTypeInput"
+          }
+        },
+        "productName": {
+          "type": "string",
+          "example": "We Mobile L",
+          "description": "product name"
+        },
+        "serial": {
+          "type": "string",
+          "example": "0763485215",
+          "description": "product Serial"
+        }
+      },
+      "title": "ProductPriceOfferRequestType"
+    },
+    "OrderType": {
+      "title": "orderType",
+      "type": "string",
+      "enum": [
+        "NEW",
+        "CEASE",
+        "TRANSFER",
+        "RELOCATION",
+        "CONVERSION",
+        "MODIFY",
+        "RECONNECT",
+        "MIGRATION",
+        "RETURN",
+        "SUSPEND",
+        "UNSUSPEND",
+        "UPGRADE_OR_DOWNGRADE"
+      ]
+    },
+    "LineItemFilterType": {
+      "type": "object",
+      "properties": {
+        "actionType": {
+          "$ref": "#/definitions/ActionType"
+        },
+        "partSubType": {
+          "$ref": "#/definitions/PartSubType"
+        },
+        "partType": {
+          "$ref": "#/definitions/PartType"
+        }
+      },
+      "title": "LineItemFilterType",
+      "description": "Use this to filter line item in the response"
+    },
+    "ActionType": {
+      "title": "ActionType",
+      "type": "string",
+      "enum": [
+        "Add",
+        "Delete",
+        "Replace/Add",
+        "Replace/AddModify",
+        "Replace/Delete",
+        "Replace/DeleteModify",
+        "Add-Skip",
+        "Delete-Skip",
+        "Replace/Add-Skip",
+        "Replace/Delete-Skip",
+        "Cease",
+        "Relocation/Add",
+        "Relocation/Delete",
+        "AddBilling",
+        "RemoveBilling",
+        "Refund",
+        "Reconnect",
+        "Recreate",
+        "Conversion",
+        "Migrate",
+        "AddChild",
+        "Modify Inbox",
+        "Update",
+        "MobileReference",
+        "SkipAdd",
+        "SkipDelete",
+        "SkipCease",
+        "SkipReplaceAdd",
+        "SkipReplaceDelete",
+        "None"
+      ]
+    },
+    "PartType": {
+      "title": "PartType",
+      "type": "string",
+      "enum": [
+        "Billing Code",
+        "Postpaid Billing Service",
+        "Billing Service",
+        "Data",
+        "Deposit Plan",
+        "Main Contract",
+        "Main Part",
+        "Option",
+        "Commercial Product",
+        "Rate Plan",
+        "Voicemail",
+        "cost manager",
+        "Public TPV",
+        "Discount",
+        "Downgrade Fee",
+        "ETF",
+        "Hardware",
+        "Info",
+        "Network",
+        "Not Applicable",
+        "Other",
+        "Promotion",
+        "Access",
+        "Access Option",
+        "Access Suboption",
+        "Voice",
+        "Setup Fee",
+        "Teaser",
+        "Instalment",
+        "Bundle Billing Service",
+        "Loyalty",
+        "Add-on",
+        "PCRF RP",
+        "Charges",
+        "Mobile Pack Line Item",
+        "OTT TV Service"
+      ]
+    },
+    "PartSubType": {
+      "title": "PartSubType",
+      "type": "string",
+      "enum": [
+        "FMC discount",
+        "Sunrise Advantage discount",
+        "Loyalty discount",
+        "Young discount",
+        "Binding promo discount",
+        "FoF discount",
+        "EoF discount"
+      ]
+    },
+    "GetPriceOfferingsResponse": {
+      "type": "object",
+      "required": [
+        "products"
+      ],
+      "properties": {
+        "calculatedTotalPrice": {
+          "x-nullable": true,
+          "$ref": "#/definitions/CalculatedPrice"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductPriceOfferResponseType"
+          }
+        }
+      },
+      "title": "GetPriceOfferingsResponse"
+    },
+    "ProductPriceOfferResponseType": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "$ref": "#/definitions/PriceOfferResponseTypeErrorCode"
+        },
+        "isMobilePackFirstSubscription": {
+          "type": "boolean",
+          "x-nullable": true,
+          "description": "Is First Subscription of mobile pack"
+        },
+        "lineItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LineItemType"
+          }
+        },
+        "orderAttributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KeyValuePairType"
+          }
+        },
+        "orderIndex": {
+          "type": "string",
+          "example": 2,
+          "description": "index of order"
+        },
+        "productName": {
+          "type": "string",
+          "example": "We Mobile L",
+          "description": "product name"
+        },
+        "quotationId": {
+          "type": "string",
+          "example": "Q000000002",
+          "description": "order quation id"
+        },
+        "salesId": {
+          "type": "string",
+          "example": 67142,
+          "description": "sales Id"
+        },
+        "serial": {
+          "type": "string",
+          "example": 763485215,
+          "description": "product Serial"
+        }
+      },
+      "title": "ProductPriceOfferResponseType"
+    },
+    "PriceOfferResponseTypeErrorCode": {
+      "title": "PriceOfferResponseTypeErrorCode",
+      "type": "string",
+      "enum": [
+        "RP_PACK_LEVEL_MISMATCH",
+        "INVALID_PACK_LEVEL",
+        "ORDERED_AS_FIRST_ALREADY_EXISTS"
+      ]
+    },
+    "LineItemTypeInput": {
+      "type": "object",
+      "required": [
+        "actionType",
+        "name"
+      ],
+      "properties": {
+        "actionType": {
+          "$ref": "#/definitions/ActionType"
+        },
+        "name": {
+          "type": "string",
+          "example": "RP We Mobile L",
+          "description": "name of rateplan"
+        }
+      },
+      "title": "LineItemTypeInput"
+    },
+    "LineItemType": {
+      "type": "object",
+      "required": [
+        "actionType",
+        "name"
+      ],
+      "properties": {
+        "actionType": {
+          "$ref": "#/definitions/ActionType"
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/KeyValuePairType"
+          }
+        },
+        "calculatedAmount": {
+          "type": "number",
+          "example": 80,
+          "description": "calulcated amount"
+        },
+        "childItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LineItemType"
+          }
+        },
+        "calculatedPrice": {
+          "x-nullable": true,
+          "$ref": "#/definitions/CalculatedPrice"
+        },
+        "name": {
+          "type": "string",
+          "example": "RP We Mobile L",
+          "description": "name of offer"
+        },
+        "partClassification": {
+          "$ref": "#/definitions/PartClassification"
+        },
+        "partSubType": {
+          "$ref": "#/definitions/PartSubType"
+        },
+        "partType": {
+          "$ref": "#/definitions/PartType"
+        }
+      },
+      "title": "LineItemType"
+    },
+    "CalculatedPrice": {
+      "type": "object",
+      "title": "CalculatedPrice",
+      "properties": {
+        "basePrice": {
+          "type": "number"
+        },
+        "discount": {
+          "type": "number"
+        },
+        "youngDiscount": {
+          "type": "number"
+        },
+        "price": {
+          "type": "number"
+        }
+      }
+    },
+    "PartClassification": {
+      "title": "PartClassification",
+      "type": "string",
+      "enum": [
+        "Internet",
+        "TV",
+        "Voice",
+        "Mobile",
+        "Other"
+      ]
+    },
+    "KeyValuePairType": {
+      "type": "object",
+      "required": [
+        "key",
+        "value"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "example": "Base fee",
+          "description": "key of additional attributes"
+        },
+        "value": {
+          "type": "string",
+          "example": 80,
+          "description": "value of additional attributes"
+        }
+      },
+      "title": "KeyValuePairType"
+    },
+    "RelationType": {
+      "type": "string",
+      "enum": [
+        "MASTER",
+        "LINKED",
+        "SECONDARY"
+      ]
+    },
+    "SubscriptionState": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "ACTIVE_INT_LOW",
+        "INACTIVE",
+        "SUSPENDED_BY_USER",
+        "SUSPENDED_BY_OPERATOR",
+        "DEACTIVE",
+        "TERMINATED"
+      ]
+    },
+    "Contract": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "duration": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Cart",
+      "description": "API for Cart operations"
+    },
+    {
+      "name": "Account",
+      "description": "API for Customer Account operations"
+    },
+    {
+      "name": "Eligibility",
+      "description": "API for Eligibility (Electrician, CreditCheck)"
+    },
+    {
+      "name": "LineCheck",
+      "description": "API for LineCheck"
+    },
+    {
+      "name": "Offer",
+      "description": "API for Offer"
+    },
+    {
+      "name": "Product",
+      "description": "API for Product(s)"
+    },
+    {
+      "name": "UID",
+      "description": "API for Company UID"
+    },
+    {
+      "name": "Subscription",
+      "description": "API for Subscription operations"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
